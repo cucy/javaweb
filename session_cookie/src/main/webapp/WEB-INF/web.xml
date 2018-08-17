@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>session_cookie</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- session对象默认30分钟没有使用服务器会自动销毁session，可以手工配置session的失效时间 -->
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+	<servlet>
+		<servlet-name>SessionDemo1</servlet-name>
+		<servlet-class>org.session.SessionDemo1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SessionDemo1</servlet-name>
+		<url-pattern>/servlet/SessionDemo1</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>IndexServlet</display-name>
+		<servlet-name>IndexServlet</servlet-name>
+		<servlet-class>org.session.IndexServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IndexServlet</servlet-name>
+		<url-pattern>/servlet/IndexServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BuyServlet</servlet-name>
+		<servlet-class>org.session.BuyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BuyServlet</servlet-name>
+		<url-pattern>/servlet/BuyServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListCartServlet</servlet-name>
+		<servlet-class>org.session.ListCartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListCartServlet</servlet-name>
+		<url-pattern>/servlet/ListCartServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- java cookie 测试servlet -->
+	<servlet>
+		<servlet-name>CookieDemo01</servlet-name>
+		<servlet-class>org.cookie.CookieDemo01</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CookieDemo01</servlet-name>
+		<url-pattern>/servlet/CookieDemo01</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CookieDemo02</servlet-name>
+		<servlet-class>org.cookie.CookieDemo02</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CookieDemo02</servlet-name>
+		<url-pattern>/servlet/CookieDemo02</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

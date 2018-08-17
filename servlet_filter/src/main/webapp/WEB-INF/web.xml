@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>servlet_filter</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- demo1 -->
+	<!-- 配置过滤器 -->
+	<filter>
+		<filter-name>FilterDemo01</filter-name>
+		<filter-class>org.dlj.demo1.web.filter.FilterDemo01</filter-class>
+	</filter>
+	<!-- 映射过滤器 -->
+	<filter-mapping>
+		<filter-name>FilterDemo01</filter-name>
+		<!-- '/*'表示拦截所有请求 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<description>FilterDemo02过滤器</description>
+		<filter-name>FilterDemo02</filter-name>
+		<filter-class>org.dlj.demo1.web.filter.FilterDemo02</filter-class>
+		<init-param>
+			<description>配置FilterDemo02过滤器的初始化参数</description>
+			<param-name>name</param-name>
+			<param-value>gacl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>like</param-name>
+			<param-value>java</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>FilterDemo02</filter-name>
+		<!-- '/*'表示拦截所有的请求 -->
+		<url-pattern>/*</url-pattern>
+		<!-- 
+			指定过滤器所拦截的资源被Servlet容器调用的方式，
+			可以是REQUEST,INCLUDE,FORWARD,ERROR之一，默认为REQUEST.
+			用户可以设置多个dispatcher子元素用来指定Filter对资源的多种嗲用方式进行拦截
+			REQUEST: 当用户直接访问页面时，web容器将会调用过滤器
+			INCLUDE：如果目标资源是通过RequestDispatcher的include()方法访问时，该过滤器将被调用
+			FORWARD: 如果目标资源通过RequestDispatcher的forward()方法访问时，该过滤器将被调用
+			ERROR  : 如果目标资源是通过声明式异常处理机制调用时，那么该过滤器将被调用
+		 -->
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	
+	<!-- demo2 -->
+	<!--  配置字符过滤器，解决get,post请求方式下的中文乱码问题
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.dlj.demo2.web.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	<servlet>
+		<servlet-name>ServletDemo1</servlet-name>
+		<servlet-class>org.dlj.demo2.web.controller.ServletDemo1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletDemo1</servlet-name>
+		<url-pattern>/servlet/ServletDemo1</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 配置Html过滤器，转义内容中的html标签
+	<filter>
+		<filter-name>HtmlFilter</filter-name>
+		<filter-class>org.dlj.demo2.web.filter.HtmlFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HtmlFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	<servlet>
+		<servlet-name>ServletDemo2</servlet-name>
+		<servlet-class>org.dlj.demo2.web.controller.ServletDemo2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletDemo2</servlet-name>
+		<url-pattern>/servlet/ServletDemo2</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 配置敏感字符过滤器
+	<filter>
+		<filter-name>DirtyFilter</filter-name>
+		<filter-class>org.dlj.demo2.web.filter.DirtyFilter</filter-class>
+		
+		<init-param>
+			<param-name>dirtyWord</param-name>
+			<param-value>/WEB-INF/DirtyWord.txt</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>DirtyFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	
+	<!-- 整合上面的配置字符编码、配置html转义、敏感字符过滤三个过滤器的功能
+	<filter>
+		<filter-name>AdvancedFilter</filter-name>
+		<filter-class>org.dlj.demo2.web.filter.AdvancedFilter</filter-class>
+		<init-param>
+			<param-name>charset</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dirtyWord</param-name>
+			<param-value>/WEB-INF/DirtyWord.txt</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>AdvancedFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	
+	<!-- 压缩响应的静态页面，jsp,JS,CSS,HTML文件的输出内容都经过压缩过滤器压缩后才输出
+	<filter>
+		<description>配置压缩过滤器</description>
+		<filter-name>GzipFilter</filter-name>
+		<filter-class>org.dlj.demo2.web.filter.GzipFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.css</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping> -->
+	
+	<!-- 映射需要缓存输出的jsp页面，这几个页面都只是单纯作为输入UI，不会有太多的变化，因此可以缓存输出
+	<filter>
+		<description>web资源缓存过滤器</description>
+		<filter-name>WebResourceCachedFilter</filter-name>
+		<filter-class>org.dlj.demo2.web.filter.WebResourceCachedFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>WebResourceCachedFilter</filter-name>
+		<url-pattern>/login.jsp</url-pattern>
+		<url-pattern>/test.jsp</url-pattern>
+		<url-pattern>/index.jsp</url-pattern>
+	</filter-mapping> -->
+	
+	<!-- demo3 -->
+	<!-- 统一全站字符编码 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.dlj.demo3.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>charset</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 设置动态页面禁止缓存 -->
+	<filter>
+		<filter-name>NoCacheFilter</filter-name>
+		<filter-class>org.dlj.demo3.web.filter.NoCacheFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>NoCacheFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+		<!-- 只拦截jsp请求,这个标签不起作用
+		<servlet-name>*.jsp</servlet-name> -->
+	</filter-mapping>
+	
+	<!-- 配置缓存过滤器 -->
+	<filter>
+		<filter-name>CacheFilter</filter-name>
+		<filter-class>org.dlj.demo3.web.filter.CacheFilter</filter-class>
+		<!-- 配置要缓存的web资源以及缓存的时间，以小时为单位 -->
+		<init-param>
+			<param-name>jsp</param-name>
+			<param-value>4</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jpg</param-name>
+			<param-value>1</param-value>
+		</init-param>
+	</filter>
+	<!-- 
+	<filter-mapping>
+		<filter-name>CacheFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CacheFilter</filter-name>
+		<url-pattern>*.jpg</url-pattern>
+	</filter-mapping> -->
+	
+	<!-- 设置自动登录过滤器 -->
+	<filter>
+		<filter-name>AutoLoginFilter</filter-name>
+		<filter-class>org.dlj.demo3.web.filter.AutoLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AutoLoginFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>org.dlj.demo3.web.controller.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/servlet/LoginServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CancelAutoLoginServlet</servlet-name>
+		<servlet-class>org.dlj.demo3.web.controller.CancelAutoLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CancelAutoLoginServlet</servlet-name>
+		<url-pattern>/servlet/CancelAutoLoginServlet</url-pattern>
+	</servlet-mapping>
+</web-app>

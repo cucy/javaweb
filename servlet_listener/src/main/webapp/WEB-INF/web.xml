@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>servlet_listener</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- 注册针对ServletContext对象进行监听到监视器
+	<listener>
+		<description>ServletContextListener监听器</description>
+		<listener-class>org.dlj.demo1.web.listener.MyServletContextListener</listener-class>
+	</listener> -->
+	
+	<!-- 注册对HttpSession对象进行监听的监视器
+	<listener>
+		<description>HttpSessionListener监听器</description>
+		<listener-class>org.dlj.demo1.web.listener.MyHttpSessionListener</listener-class>
+	</listener> -->
+	<!-- 配置HttpSession对象的销毁时机 -->
+	<session-config>
+		<!-- 配置HttpSession对象1分钟后销毁 -->
+		<session-timeout>15</session-timeout>
+	</session-config>
+	
+	<!-- 注册针对ServletRequest对象进行监听的监听器
+	<listener>
+		<description>ServletRequestListener监听器</description>
+		<listener-class>org.dlj.demo1.web.listener.MyServletRequestListener</listener-class>
+	</listener> -->
+	
+	<!-- demo2使用到的监听器
+	<listener>
+		<description>MyServletContextAttributeListener监听器</description>
+		<listener-class>org.dlj.demo2.web.listener.MyServletContextAttributeListener</listener-class>
+	</listener>
+	<listener>
+		<description>MyRequestAndSessionAttributeListener监听器</description>
+		<listener-class>org.dlj.demo2.web.listener.MyRequestAndSessionAttributeListener</listener-class>
+	</listener>
+	 -->
+	 
+	 <!-- demo3使用到的监听器 -->
+	 <listener>
+	 	<description>OnLineCountListener监听器</description>
+	 	<listener-class>org.dlj.demo3.web.listener.OnLineCountListener</listener-class>
+	 </listener>
+	 <listener>
+	 	<description>SessionScanerListener监听器</description>
+	 	<listener-class>org.dlj.demo3.web.listener.SessionScanerListener</listener-class>
+	 </listener>
+</web-app>

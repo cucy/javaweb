@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets 
+		and Filters <context-param> <param-name>contextConfigLocation</param-name> 
+		<param-value>/WEB-INF/spring/root-context.xml</param-value> </context-param> -->
+
+	<!-- Creates the Spring Container shared by all Servlets and Filters <listener> 
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+		</listener> <servlet> <servlet-name>appServlet</servlet-name> <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> 
+		<init-param> <param-name>contextConfigLocation</param-name> <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> 
+		</init-param> <load-on-startup>1</load-on-startup> </servlet> -->
+
+	<!-- Processes application requests <servlet-mapping> <servlet-name>appServlet</servlet-name> 
+		<url-pattern>/</url-pattern> </servlet-mapping> <filter> <filter-name>characterEncodingFilter</filter-name> 
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
+		<init-param> <param-name>encoding</param-name> <param-value>UTF-8</param-value> 
+		</init-param> <init-param> <param-name>forceEncoding</param-name> <param-value>true</param-value> 
+		</init-param> </filter> <filter-mapping> <filter-name>characterEncodingFilter</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
+
+	<!-- user filter <filter> <filter-name>userinfofilter</filter-name> <filter-class>com.dlj.demo.learn_plm.common.filters.UserFilter</filter-class> 
+		</filter> <filter-mapping> <filter-name>userinfofilter</filter-name> <url-pattern>/*</url-pattern> 
+		</filter-mapping> -->
+	<welcome-file-list>
+		<welcome-file>upload.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>UploadHandleServlet</servlet-name>
+		<servlet-class>org.file_upload_download.UploadHandleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadHandleServlet</servlet-name>
+		<url-pattern>/servlet/UploadHandleServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListFileServlet</servlet-name>
+		<servlet-class>org.file_upload_download.ListFileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListFileServlet</servlet-name>
+		<url-pattern>/servlet/ListFileServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DownLoadServlet</servlet-name>
+		<servlet-class>org.file_upload_download.DownLoadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DownLoadServlet</servlet-name>
+		<url-pattern>/servlet/DownLoadServlet</url-pattern>
+	</servlet-mapping>
+
+
+
+
+
+
+
+	<listener>
+		<listener-class>
+			org.apache.commons.fileupload.servlet.FileCleanerCleanup
+		</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>FileServlet</servlet-name>
+		<servlet-class>org.common_upload.FileServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FileServlet</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>StreamFileServlet</servlet-name>
+		<servlet-class>org.common_upload.StreamFileServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>StreamFileServlet</servlet-name>
+		<url-pattern>/stream/upload</url-pattern>
+	</servlet-mapping>
+</web-app>

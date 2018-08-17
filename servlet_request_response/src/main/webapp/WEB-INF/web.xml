@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>servlet_request_response</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<!-- servlet 开发 -->
+	<!-- 配置ServletConfigDemo1的初始化参数 -->
+	<servlet>
+		<servlet-name>ServletConfigDemo1</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletConfigDemo1</servlet-class>
+		<init-param>
+			<param-name>name</param-name>
+			<param-value>gacl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>password</param-name>
+			<param-value>123</param-value>
+		</init-param>
+		<init-param>
+			<param-name>charset</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletConfigDemo1</servlet-name>
+		<url-pattern>/servlet/ServletConfigDemo1</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 通过ServletContext实现多个servlet共享数据 -->
+	<servlet>
+		<servlet-name>ServletContextDemo1</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletContextDemo1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContextDemo1</servlet-name>
+		<url-pattern>/servlet/ServletContextDemo1</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ServletContextDemo2</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletContextDemo2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContextDemo2</servlet-name>
+		<url-pattern>/servlet/ServletContextDemo2</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 获取web应用的初始化参数 -->
+	<context-param>
+		<param-name>url</param-name>
+		<param-value>jdbc:mysql://localhost:3306/test</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>ServletContextDemo3</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletContextDemo3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContextDemo3</servlet-name>
+		<url-pattern>/servlet/ServletContextDemo3</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 用servletContext实现请求转发 -->
+	<servlet>
+		<servlet-name>ServletContextDemo4</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletContextDemo4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContextDemo4</servlet-name>
+		<url-pattern>/servlet/ServletContextDemo4</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ServletContextDemo5</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletContextDemo5</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContextDemo5</servlet-name>
+		<url-pattern>/servlet/ServletContextDemo5</url-pattern>
+	</servlet-mapping>
+	<!-- 使用servletContext读取web项目中各处的配置文件内容 -->
+	<servlet>
+		<servlet-name>ServletContextDemo6</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletContextDemo6</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContextDemo6</servlet-name>
+		<url-pattern>/servlet/ServletContextDemo6</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 使用使用类加载器读取资源文件 -->
+	<servlet>
+		<servlet-name>ServletContextDemo7</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletContextDemo7</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContextDemo7</servlet-name>
+		<url-pattern>/servlet/ServletContextDemo7</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 在客户端缓存Servlet的输出 -->
+	<servlet>
+		<servlet-name>ServletDemo5</servlet-name>
+		<servlet-class>org.dlj.servlet.study.ServletDemo5</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletDemo5</servlet-name>
+		<url-pattern>/servlet/ServletDemo5</url-pattern>
+	</servlet-mapping>
+	
+	<!-- HttpServletRequest对象 一 -->
+	<!-- 通过HttpServletRequest对象获取客户端请求信息 -->
+	<servlet>
+		<servlet-name>RequestDemo01</servlet-name>
+		<servlet-class>org.dlj.request.study.RequestDemo01</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RequestDemo01</servlet-name>
+		<url-pattern>/servlet/RequestDemo01</url-pattern>
+	</servlet-mapping>
+	<!-- 通过request对象获取客户端请求头信息 -->
+	<servlet>
+		<servlet-name>RequestDemo02</servlet-name>
+		<servlet-class>org.dlj.request.study.RequestDemo02</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RequestDemo02</servlet-name>
+		<url-pattern>/servlet/RequestDemo02</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 通过request对象获取客户端请求参数-提交的数据 -->
+	<servlet>
+		<servlet-name>RequestDemo03</servlet-name>
+		<servlet-class>org.dlj.request.study.RequestDemo03</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RequestDemo03</servlet-name>
+		<url-pattern>/servlet/RequestDemo03</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 通过request对象获取客户端请求参数乱码-提交的数据 -->
+	<servlet>
+		<servlet-name>RequestDemo04</servlet-name>
+		<servlet-class>org.dlj.request.study.RequestDemo04</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RequestDemo04</servlet-name>
+		<url-pattern>/servlet/RequestDemo04</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RequestDemo05</servlet-name>
+		<servlet-class>org.dlj.request.study.RequestDemo05</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RequestDemo05</servlet-name>
+		<url-pattern>/servlet/RequestDemo05</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 通过request对象实现请求转发-->
+	<servlet>
+		<servlet-name>RequestDemo06</servlet-name>
+		<servlet-class>org.dlj.request.study.RequestDemo06</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RequestDemo06</servlet-name>
+		<url-pattern>/servlet/RequestDemo06</url-pattern>
+	</servlet-mapping>
+	
+	<!-- HttpServletResponse 一 -->
+	<!-- 使用OutputStream流向客户端浏览器输出中文数据 -->
+	<servlet>
+		<servlet-name>ResponseDemo01</servlet-name>
+		<servlet-class>org.dlj.response.study.ResponseDemo01</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResponseDemo01</servlet-name>
+		<url-pattern>/servlet/ResponseDemo01</url-pattern>
+	</servlet-mapping>
+	<!-- 使用OutputStream流向客户端浏览器输出中文数据 -->
+	<servlet>
+		<servlet-name>ResponseDemo02</servlet-name>
+		<servlet-class>org.dlj.response.study.ResponseDemo02</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResponseDemo02</servlet-name>
+		<url-pattern>/servlet/ResponseDemo02</url-pattern>
+	</servlet-mapping>
+	<!-- 使用OutputStream流向客户端浏览器输出图片展示 -->
+	<servlet>
+		<servlet-name>ResponseImage</servlet-name>
+		<servlet-class>org.dlj.response.study.ResponseImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResponseImage</servlet-name>
+		<url-pattern>/servlet/ResponseImage</url-pattern>
+	</servlet-mapping>
+	
+	<!-- HttpServletResponse 二 -->
+	<!-- 使用OutputStream流返回生成的随机图片用作验证码 -->
+	<servlet>
+		<servlet-name>ResponseDemo03</servlet-name>
+		<servlet-class>org.dlj.response.study.ResponseDemo03</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResponseDemo03</servlet-name>
+		<url-pattern>/servlet/ResponseDemo03</url-pattern>
+	</servlet-mapping>
+	<!-- 请求重定向 -->
+	<servlet>
+		<servlet-name>ResponseDemo04</servlet-name>
+		<servlet-class>org.dlj.response.study.ResponseDemo04</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResponseDemo04</servlet-name>
+		<url-pattern>/servlet/ResponseDemo04</url-pattern>
+	</servlet-mapping>
+</web-app>
